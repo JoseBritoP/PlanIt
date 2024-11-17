@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
-import { Roboto_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const roboto = Roboto_Mono({
+const poppins = Poppins({
   subsets:['latin'],
-  weight:['200','400','500','700'],
-  variable:'--font-roboto'
+  weight:['400','500','600','700'],
+  variable:'--font-poppins'
 })
 
 export const metadata: Metadata = {
   title: "PlanIt",
   description: "Manage your events",
+  icons:{
+    icon:'/assets/images/logo.svg'
+  }
 };
 
 export default function RootLayout({
@@ -21,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} antialiased`}
+        className={`${poppins.variable} antialiased`}
       >
         {children}
       </body>
