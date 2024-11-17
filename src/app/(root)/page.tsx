@@ -1,9 +1,10 @@
-import React from 'react'
+import HeroSection from "@/components/shared/Home/HeroSection";
+import React from "react";
 
 export default function Home() {
   return (
-    <main>
-      <h1 className='text-4xl'>PlanIt</h1>
-    </main>
-  )
+    <>
+      <HeroSection />
+    </>
+  );
 }
