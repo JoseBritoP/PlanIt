@@ -18,8 +18,8 @@ import { Checkbox } from "../ui/checkbox"
 import { useRouter } from "next/navigation"
 import { IEvent } from "@/config/models/event.model"
 import { createEvent, updateEvent } from "@/lib/actions/event.actions"
-import Dropdown from "../shared/DropDown"
-import { FileUploader } from "../shared/FileUploader"
+import Dropdown from "../shared/Event/DropDown"
+import { FileUploader } from "../shared/Event/FileUploader"
 import { useUploadThing } from "@/lib/uploadthing"
 
 const eventDefaultValues = {
@@ -43,6 +43,7 @@ type EventFormProps = {
 }
 
 const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
+  // TODO: Create custom hook to EventForm
   const [files, setFiles] = useState<File[]>([])
   const initialValues = event && type === 'Update' 
     ? { 
