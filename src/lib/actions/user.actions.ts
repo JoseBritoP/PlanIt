@@ -12,8 +12,8 @@ import { connectToDatabase } from "@/config/db";
 
 export async function createUser(user: CreateUserParams) {
   try {
+    console.log('Creating...')
     await connectToDatabase();
-
     const newUser = await User.create(user);
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
