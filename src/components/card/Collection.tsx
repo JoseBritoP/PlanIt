@@ -2,6 +2,7 @@ import React from 'react'
 import Card from './Card'
 import Pagination from './Pagination'
 import { IEvent } from '@/config/models/event.model'
+import { currentUser } from '@clerk/nextjs/server'
 
 type CollectionProps = {
   data: IEvent[],
@@ -14,7 +15,7 @@ type CollectionProps = {
   collectionType?: 'Events_Organized' | 'My_Tickets' | 'All_Events'
 }
 
-const Collection = ({
+const Collection = async ({
   data,
   emptyTitle,
   emptyStateSubtext,
@@ -23,6 +24,10 @@ const Collection = ({
   collectionType,
   urlParamName,
 }: CollectionProps) => {
+
+  const user = await currentUser();
+
+  const userId = user?.id as string;
   return (
     <>
       {data.length > 0 ? (
@@ -34,7 +39,7 @@ const Collection = ({
 
               return (
                 <li key={event._id} className="flex justify-center">
-                  <Card event={event} hasOrderLink={hasOrderLink} hidePrice={hidePrice} />
+                  <Card event={event} hasOrderLink={hasOrderLink} hidePrice={hidePrice} userId={userId} />
                 </li>
               )
             })}
