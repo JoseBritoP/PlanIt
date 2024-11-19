@@ -1,21 +1,20 @@
-"use client"
 import { IEvent } from '@/config/models/event.model'
 import { formatDateTime } from '@/lib/utils'
-import { useSession } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-// import { DeleteConfirmation } from './DeleteConfirmation'
+import { DeleteConfirmation } from '../shared/Event/DeleteConfirmation'
 
 type CardProps = {
   event: IEvent,
   hasOrderLink?: boolean,
   hidePrice?: boolean
+  userId:string
 }
 
-const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
-  const { session } = useSession();
-  const userId = session?.id as string;
+const Card = async ({ event, hasOrderLink, hidePrice
+  ,userId
+ }: CardProps) => {
 
   const isEventCreator = userId === event.organizer._id.toString();
 
@@ -34,7 +33,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
             <Image src="/assets/icons/edit.svg" alt="edit" width={20} height={20} />
           </Link>
 
-          {/* <DeleteConfirmation eventId={event._id} /> */}
+          <DeleteConfirmation eventId={event._id} />
         </div>
       )}
 
