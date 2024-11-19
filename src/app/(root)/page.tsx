@@ -6,6 +6,7 @@ import { SearchParamProps } from "@/types";
 import React from "react";
 
 export default async function Home({ searchParams }: SearchParamProps) {
+
   const search = await searchParams;
   const page = Number(search?.page) || 1;
   const searchText = (search?.query as string) || "";
