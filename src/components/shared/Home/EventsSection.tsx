@@ -2,20 +2,26 @@
 import Collection from "@/components/card/Collection";
 import React from "react";
 
-type Event = {
-  data: any;
-  totalPages: number;
-} | undefined
-
 interface EventsSectionProps {
   page: number;
-  events: Event
+  searchText: string;
+  category: string;
+  events:
+    | {
+        data: any;
+        totalPages: number;
+      }
+    | undefined;
 }
-
 export default async function EventsSection({
   events,
+  category,
   page,
+  searchText,
 }: EventsSectionProps) {
+
+  console.log(category)
+  console.log(searchText)
   return (
     <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
       <h2 className="h2-bold">
