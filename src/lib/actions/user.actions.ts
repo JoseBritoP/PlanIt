@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { Clerk } from "@clerk/clerk-sdk-node";
 
 import User from "@/config/models/user.model";
 import Order from "@/config/models/order.model";
@@ -12,7 +13,7 @@ import { connectToDatabase } from "@/config/db";
 
 export async function createUser(user: CreateUserParams) {
   try {
-    console.log('Creating...')
+    console.log("Creating...");
     await connectToDatabase();
     const newUser = await User.create(user);
     return JSON.parse(JSON.stringify(newUser));
@@ -82,5 +83,20 @@ export async function deleteUser(clerkId: string) {
     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null;
   } catch (error) {
     handleError(error);
+  }
+}
+
+export async function getCurrentUser() {
+  try {
+    const { user } = req.auth; // Obtener datos del usuario autenticado
+
+    if (user) {
+      const userId = user.id; // Aquí obtienes el ID del usuario autenticado
+      res.status(200).json({ userId });
+    } else {
+      res.status(401).json({ error: "User not authenticated" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching user data" });
   }
 }

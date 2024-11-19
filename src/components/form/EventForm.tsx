@@ -43,6 +43,7 @@ type EventFormProps = {
 }
 
 const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
+  console.log('',userId)
   // TODO: Create custom hook to EventForm
   const [files, setFiles] = useState<File[]>([])
   const initialValues = event && type === 'Update' 
