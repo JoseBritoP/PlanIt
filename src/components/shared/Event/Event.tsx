@@ -1,11 +1,11 @@
-"use client";
 import EventForm from "@/components/form/EventForm";
-import { useSession } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import React from "react";
 
-export default function EventComponent() {
-  const { session } = useSession();
-  const userId = session?.id as string;
+export default async function EventComponent() {
+  const user = await currentUser();
+  const userId = user?.id as string;
+
   return (
     <div className="wrapper my-8">
       <EventForm userId={userId} type="Create" />
