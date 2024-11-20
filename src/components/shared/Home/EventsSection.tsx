@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Collection from "@/components/card/Collection";
 import React from "react";
+import Search from "../Search";
+import CategoryFilter from "../CategoryFilter";
 
 interface EventsSectionProps {
   page: number;
@@ -29,8 +31,8 @@ export default async function EventsSection({
       </h2>
 
       <div className="flex w-full flex-col gap-5 md:flex-row">
-        {/* //TODO: Search */}
-        {/* //TODO: CategoryFilter */}
+        <Search/>
+        <CategoryFilter/>
       </div>
 
       <Collection
